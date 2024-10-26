@@ -1,0 +1,42 @@
+1. Create a number_guessing_game folder in the project folder for your program
+mkdir number_guessing_game
+cd number_guessing_game
+git init
+git checkout -b main
+touch README.md
+git add README.md
+git commit -m "Initial commit" #1st commit
+
+2. Create number_guess.sh in your number_guessing_game folder and give it executable permissions
+touch number_guess.sh
+chmod +x number_guess.sh
+git add number_guess.sh
+git commit -m "feat: add number guessing game" #2nd commit
+
+3. Your git repository should have at least five commits
+git add number_guess.sh
+git commit -m "refactor: change variable name" #3rd commit
+
+git add number_guess.sh
+git commit -m "refactor: change query" #4th commit
+
+git add README.md
+git commit -m "refactor: insert details" #5th commit
+
+4. Connect to PostgreSQL and create database
+CREATE DATABASE number_guess;
+
+\c number_guess
+
+CREATE TABLE players(
+	player_id serial PRIMARY KEY,
+	username VARCHAR(22) NOT NULL UNIQUE
+);
+
+CREATE TABLE games(
+	game_id serial PRIMARY KEY,
+	player_id int,
+	number_of_guesses int,
+	secret_number int,
+	FOREIGN KEY(player_id) REFERENCES players(player_id)
+);
